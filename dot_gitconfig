@@ -11,7 +11,19 @@
 [core]
 	excludesfile = /Users/wsy/.gitignore_global
   editor = vim
-  pager = diff-so-fancy | less --tabs=4 -RFX
+
+[pager]
+    diff = delta
+    show = delta
+    log = delta
+    reflog = delta
+
+[delta]
+    features = Dracula
+    line-numbers = true
+
+[interactive]
+    diffFilter = delta --color-only
 
 [alias]
   # most commonly used
@@ -25,7 +37,6 @@
   # least used
   br = branch -a
   s = status -s -u
-  cl = log --stat -C -2
   c = commit
   dh = diff HEAD
   dc = diff --staged
@@ -72,7 +83,7 @@
   testecho2 = !sh -c 'echo without slash: zero=$0 one=$1 two=$2'
   # te2 RESULT: without slash: zero=A one=B two=C
   st = status
-  l = log --stat -C
+  l = log --pretty=oneline -n 20 --graph --abbrev-commit
   ll = log --stat -C -3
   servehere = daemon --verbose --informative-errors --reuseaddr --export-all --base-path=. --enable=receive-pack
   purgeme = !git clean -fd && git reset --hard
@@ -139,10 +150,3 @@
   added = yellow
   changed = green
   untracked = cyan
-
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true

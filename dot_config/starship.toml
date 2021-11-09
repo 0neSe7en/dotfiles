@@ -1,0 +1,18 @@
+[cmd_duration]
+min_time = 500
+
+[directory]
+truncate_to_repo = true
+fish_style_pwd_dir_length = 4
+
+[nodejs]
+symbol = "⬢ "
+
+[time]
+disabled = true
+format = "🕙[ %T ]"
+utc_time_offset = "-5"
+time_range = "10:00:00-14:00:00"
+
+[[battery.display]]
+threshold = 20

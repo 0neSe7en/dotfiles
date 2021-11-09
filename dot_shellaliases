@@ -1,0 +1,120 @@
+#################################
+# Simple Program Name Shortening
+#alias history "history --show-time='%h/%d - %H:%M:%S ' | less"
+#
+#
+
+alias g git
+alias loc tokei
+alias wifipass 'wifi-password'
+alias ps="procs"
+alias top="btm"
+alias help="tldr"
+alias c command
+alias v vim
+alias tig "tig --all"
+alias x 'tig'
+alias hex "hexyl"
+alias csv 'xsv table'
+alias find="fd"
+alias f="fzf"
+alias vim="nvim"
+alias grep "rg"
+alias ag "rg"
+alias tree="exa --tree --git-ignore"
+alias treeall="exa --tree"
+alias exa="exa --time-style iso --git"
+alias l="exa"
+alias ll="exa -lh"
+alias la="exa -ahl"
+alias lstr="exa -ahl -s modified"
+alias cat=bat
+alias note 'ag "TODO|HACK|FIXME|OPTIMIZE"'
+alias bw 'sudo bandwhich'
+
+#############################
+# Utilities
+
+# IP addresses
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+
+# Show active network interfaces
+alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"
+
+# Show network connections
+# Often useful to prefix with SUDO to see more system level network usage
+alias net.connections='lsof -l -i +L -R -V'
+alias net.established='lsof -l -i +L -R -V | grep ESTABLISHED'
+
+alias du="ncdu --color dark -rr -x"
+alias ef 'vim ~/.config/fish/config.fish'
+alias rec 'asciinema rec -c fish'
+alias psef="ps -ef | grep "
+
+alias ...=../..
+alias ....=../../..
+alias .....=../../../..
+alias ......=../../../../..
+alias dl 'cd ~/Downloads'
+alias dt 'cd ~/Documents'
+alias dev 'cd ~/dev'
+alias work 'cd ~/dev/work'
+
+# Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
+alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; mas upgrade; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
+
+alias kctl "kubectl"
+alias kd 'kubectl describe '
+
+alias k.exec "kubectl exec -it "
+alias pod.exec "kubectl exec -it "
+alias k.logs "kubectl logs -f "
+alias pod.log "kubectl logs -f "
+alias pods "kubectl get pods "
+alias pod.list "kubectl get pods -o wide"
+alias kp 'kubectl get pods -o wide'
+alias pod.info "kubectl describe pod "
+alias node.info "kubectl describe node "
+alias k.info "kubectl cluster-info"
+alias kctx "kubectx"
+
+alias ga='git add'
+alias gaa='git add --all'
+alias gb='git branch'
+alias gcb='git checkout -b'
+alias gcm='git checkout master'
+alias gcmsg='git commit -m'
+alias gco='git checkout'
+alias gcs='git commit -S'
+alias gcsm='git commit -s -m'
+alias gd='git diff'
+alias gf='git fetch'
+alias gl='git pull'
+alias gcl='git clone'
+alias glog='git log --oneline --decorate --graph'
+alias gloga='git log --oneline --decorate --graph --all'
+alias gm='git merge'
+alias gp='git push'
+alias gpv='git push -v'
+alias gr='git remote'
+alias gra='git remote add'
+alias grb='git rebase'
+alias grba='git rebase --abort'
+alias grbc='git rebase --continue'
+alias grbi='git rebase -i'
+alias grbm='git rebase master'
+alias grbs='git rebase --skip'
+alias grh='git reset HEAD'
+alias grhh='git reset HEAD --hard'
+alias grv='git remote -v'
+alias gsi='git submodule init'
+alias gst='git status'
+alias gsta='git stash save'
+alias gstc='git stash clear'
+alias gstd='git stash drop'
+alias gstl='git stash list'
+alias gstp='git stash pop'
+alias gsts='git stash show --text'
+alias gsu='git submodule update'
+alias gts='git tag -s'
+alias gtv='git tag | sort -V'

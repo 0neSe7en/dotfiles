@@ -1,0 +1,65 @@
+{{- if (eq .chezmoi.os "darwin") -}}
+#!/bin/bash
+
+brew update
+brea upgrade
+
+brew bundle --no-lock --file=/dev/stdin <<EOF
+tap "homebrew/cask-fonts"
+tap "homebrew/cask"
+
+brew "coreutils"
+brew "moreutils"
+
+brew" wget"
+brew "fish"
+brew "git"
+brew "watchman"
+brew "kubernetes-cli"
+brew "mas"
+brew "bandwhich"
+brew "less"
+brew "starship"
+brew "ffmpeg"
+brew "git-delta"
+brew "exa"
+brew "fd"
+brew "tokei"
+brew "btm"
+brew "tig"
+brew "xsv"
+brew "the_silver_searcher"
+brew "fzf"
+brew "jq"
+brew "asdf"
+brew "procs"
+brew "httpie"
+brew "zoxide"
+brew "neovim"
+
+cask "font-hack-nerd-font"
+cask "font-fira-code-nerd-font"
+cask "iina"
+cask "iterm2"
+cask "raycast"
+cask "numi"
+cask "proxyman"
+cask "fork"
+cask "paw"
+cask "keepingyouawake"
+cask "lens"
+cask "licecap"
+cask "1password"
+cask "1password-cli"
+cask "cakebrew"
+cask "visual-studio-code"
+cask "jetbrains-toolbox"
+cask "pdf-expert"
+cask "figma'
+cask "slack"
+cask "notion"
+
+EOF
+
+brew cleanup
+{{ end -}}
