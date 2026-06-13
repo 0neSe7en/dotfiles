@@ -1,6 +1,6 @@
 # vim:fileencoding=utf-8
 
-#: Fonts {{{
+#: Fonts
 
 #: kitty has very powerful font management. You can configure
 #: individual font faces and even specify special fonts for particular
@@ -34,7 +34,7 @@ sync_to_monitor yes
 cursor_trail 2
 cursor_trail_decay 0.1 0.4
 
-#: Scrollback {{{
+#: Scrollback
 
 scrollback_lines 10000
 map f1 launch --stdin-source=@screen_scrollback --stdin-add-formatting less +G -R
@@ -64,7 +64,9 @@ enabled_layouts         splits, stack, horizontal, vertical
 tab_bar_style       powerline
 tab_powerline_style round
 hide_window_decorations no
+{{ if eq .chezmoi.os "darwin" -}}
 macos_show_window_title_in all
+{{ end -}}
 tab_bar_edge top
 
 notify_on_cmd_finish unfocused
@@ -96,50 +98,56 @@ inactive_tab_font_style normal
 copy_on_select clipboard
 
 
-# Ghostty-like macOS bindings
-map super+[ previous_window
-map super+] next_window
-map cmd+alt+left neighboring_window left
-map cmd+alt+right neighboring_window right
-map cmd+alt+up neighboring_window up
-map cmd+alt+down neighboring_window down
-map cmd+n new_os_window
-map cmd+q quit
-map cmd+w close_window
-map cmd+alt+w close_tab
-map cmd+shift+w close_os_window
-map cmd+t new_tab_with_cwd
-map shift+cmd+[ previous_tab
-map shift+cmd+] next_tab
-map cmd+1 goto_tab 1
-map cmd+2 goto_tab 2
-map cmd+3 goto_tab 3
-map cmd+4 goto_tab 4
-map cmd+5 goto_tab 5
-map cmd+6 goto_tab 6
-map cmd+7 goto_tab 7
-map cmd+8 goto_tab 8
-map cmd+9 goto_tab -1
-map cmd+d launch --location=vsplit --cwd=last_reported
-map shift+cmd+d launch --location=hsplit --cwd=last_reported
-map cmd+enter toggle_fullscreen
-map cmd+c copy_or_noop
-map cmd+v paste_from_clipboard
-map cmd+shift+u open_url_with_hints
-map cmd+equal change_font_size all +2.0
-map cmd+plus change_font_size all +2.0
-map shift+cmd+equal change_font_size all +2.0
-map cmd+minus change_font_size all -2.0
-map shift+cmd+minus change_font_size all -2.0
-map cmd+0 change_font_size all 0
-map cmd+shift+l next_layout
-map cmd+shift+s goto_layout splits
-map cmd+shift+h goto_layout horizontal
-map cmd+shift+v goto_layout vertical
-map cmd+ctrl+left resize_window narrower 10
-map cmd+ctrl+right resize_window wider 10
-map cmd+ctrl+up resize_window taller 10
-map cmd+ctrl+down resize_window shorter 10
+{{- $mod := "cmd" -}}
+{{- $resize_mod := "cmd+ctrl" -}}
+{{- if eq .chezmoi.os "linux" -}}
+{{- $mod = "ctrl" -}}
+{{- $resize_mod = "ctrl+shift" -}}
+{{- end }}
+# Ghostty-like bindings
+map {{ $mod }}+[ previous_window
+map {{ $mod }}+] next_window
+map {{ $mod }}+alt+left neighboring_window left
+map {{ $mod }}+alt+right neighboring_window right
+map {{ $mod }}+alt+up neighboring_window up
+map {{ $mod }}+alt+down neighboring_window down
+map {{ $mod }}+n new_os_window
+map {{ $mod }}+q quit
+map {{ $mod }}+w close_window
+map {{ $mod }}+alt+w close_tab
+map {{ $mod }}+shift+w close_os_window
+map {{ $mod }}+t new_tab_with_cwd
+map shift+{{ $mod }}+[ previous_tab
+map shift+{{ $mod }}+] next_tab
+map {{ $mod }}+1 goto_tab 1
+map {{ $mod }}+2 goto_tab 2
+map {{ $mod }}+3 goto_tab 3
+map {{ $mod }}+4 goto_tab 4
+map {{ $mod }}+5 goto_tab 5
+map {{ $mod }}+6 goto_tab 6
+map {{ $mod }}+7 goto_tab 7
+map {{ $mod }}+8 goto_tab 8
+map {{ $mod }}+9 goto_tab -1
+map {{ $mod }}+d launch --location=vsplit --cwd=last_reported
+map shift+{{ $mod }}+d launch --location=hsplit --cwd=last_reported
+map {{ $mod }}+enter toggle_fullscreen
+map {{ $mod }}+c copy_or_noop
+map {{ $mod }}+v paste_from_clipboard
+map {{ $mod }}+shift+u open_url_with_hints
+map {{ $mod }}+equal change_font_size all +2.0
+map {{ $mod }}+plus change_font_size all +2.0
+map shift+{{ $mod }}+equal change_font_size all +2.0
+map {{ $mod }}+minus change_font_size all -2.0
+map shift+{{ $mod }}+minus change_font_size all -2.0
+map {{ $mod }}+0 change_font_size all 0
+map {{ $mod }}+shift+l next_layout
+map {{ $mod }}+shift+s goto_layout splits
+map {{ $mod }}+shift+h goto_layout horizontal
+map {{ $mod }}+shift+v goto_layout vertical
+map {{ $resize_mod }}+left resize_window narrower 10
+map {{ $resize_mod }}+right resize_window wider 10
+map {{ $resize_mod }}+up resize_window taller 10
+map {{ $resize_mod }}+down resize_window shorter 10
 #map ctrl+a>minus launch --location=hsplit --cwd=last_reported
 #map ctrl+a>backslash launch --location=vsplit --cwd=last_reported
 #: Next layout
@@ -152,10 +160,10 @@ map shift+right move_window right
 map shift+down move_window down
 
 # Switch focus to the neighboring window in the indicated direction
-map super+left neighboring_window left
-map super+right neighboring_window right
-map super+up neighboring_window up
-map super+down neighboring_window down
+map {{ $mod }}+left neighboring_window left
+map {{ $mod }}+right neighboring_window right
+map {{ $mod }}+up neighboring_window up
+map {{ $mod }}+down neighboring_window down
 #map ctrl+a>h neighboring_window left
 #map ctrl+a>l neighboring_window right
 #map ctrl+a>k neighboring_window up
